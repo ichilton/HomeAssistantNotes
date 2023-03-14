@@ -1,5 +1,5 @@
 blueprint:
-  name: Ring Keypad V1 Automations
+  name: Ring Keypad V1 Automations (Fork)
   description: Automations to use the Ring Keypad V1 with an Alarm Panel integration.  See https://github.com/ImSorryButWho/HomeAssistantNotes/blob/main/RingKeypadV1.md for more information.
   domain: automation
   input:
