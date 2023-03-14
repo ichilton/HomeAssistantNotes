@@ -67,7 +67,7 @@ trigger:
       command_class: 111
       device_id: !input keypad
       event_type: 6
-    id: keypad_arm_home
+    id: keypad_arm_night
   - platform: event
     event_type: zwave_js_notification
     event_data:
@@ -113,8 +113,8 @@ trigger:
     id: alarm_armed_away
   - platform: state
     entity_id: !input alarm
-    to: armed_home
-    id: alarm_armed_home
+    to: armed_night
+    id: alarm_armed_night
   - platform: state
     entity_id: !input alarm
     to: pending
@@ -151,7 +151,7 @@ action:
                 - condition: trigger
                   id: keypad_arm_away
                 - condition: trigger
-                  id: keypad_arm_home
+                  id: keypad_arm_night
             - condition: state
               entity_id: !input alarm
               state: disarmed
@@ -239,7 +239,7 @@ action:
             value: 99
     - conditions:
         - condition: trigger
-          id: alarm_armed_home
+          id: alarm_armed_night
       sequence:
         - service: zwave_js.set_value
           target:

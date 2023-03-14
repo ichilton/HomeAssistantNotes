@@ -49,7 +49,7 @@ trigger:
       command_class: 111
       device_id: !input keypad
       event_type: 6
-    id: keypad_arm_home
+    id: keypad_arm_night
   - platform: event
     event_type: "alarmo_failed_to_arm"
     event_data:
@@ -74,8 +74,8 @@ trigger:
     id: alarm_armed_away
   - platform: state
     entity_id: !input alarm
-    to: armed_home
-    id: alarm_armed_home
+    to: armed_night
+    id: alarm_armed_night
   - platform: state
     entity_id: !input alarm
     to: pending
@@ -110,7 +110,7 @@ action:
               entity_id: !input alarm
               state:
                 - "disarmed"
-                - "armed_home"
+                - "armed_night"
       sequence:
         - choose:
             - conditions:
@@ -130,7 +130,7 @@ action:
         - condition: and
           conditions:
             - condition: trigger
-              id: keypad_arm_home
+              id: keypad_arm_night
             - condition: state
               entity_id: !input alarm
               state:
@@ -141,13 +141,13 @@ action:
                 condition: template
                 value_template: "{{ trigger.event.data.event_data is not none }}"
               sequence:
-                - service: alarm_control_panel.alarm_arm_home
+                - service: alarm_control_panel.alarm_arm_night
                   target:
                     entity_id: !input alarm
                   data:
                     code: "{{ trigger.event.data.event_data }}"
           default:
-            - service: alarm_control_panel.alarm_arm_home
+            - service: alarm_control_panel.alarm_arm_night
               target:
                 entity_id: !input alarm
     - conditions:
@@ -204,7 +204,7 @@ action:
             value: 2
     - conditions:
         - condition: trigger
-          id: alarm_armed_home
+          id: alarm_armed_night
       sequence:
         - service: zwave_js.set_value
           target:
